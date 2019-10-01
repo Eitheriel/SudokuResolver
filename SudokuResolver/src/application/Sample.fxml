@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="640.0" prefWidth="480.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.SampleController">
+  <!-- TODO Add Nodes -->
+  <center>
+    <AnchorPane prefHeight="300.0" prefWidth="300.0">
+      <children>
+        <VBox layoutX="15.0" layoutY="102.0" prefHeight="450.0" prefWidth="450.0">
+          <children>
+            <HBox prefHeight="150.0" prefWidth="450.0">
+              <children>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_0_0" prefWidth="200.0" style="" wrapText="true" />
+                        <TextArea fx:id="cell_0_1" prefWidth="200.0" style="" wrapText="true" />
+                        <TextArea fx:id="cell_0_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="450.0">
+                          <HBox.margin>
+                            <Insets left="1.0" fx:id="x1" />
+                          </HBox.margin>
+                        </Separator>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_1_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0">
+                          <HBox.margin>
+                            <Insets left="1.0" fx:id="x1" />
+                          </HBox.margin>
+                        </Separator>
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_2_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_0_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_0_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_0_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_1_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_2_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_0_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_0_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_0_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_1_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_1_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_2_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_2_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox prefHeight="150.0" prefWidth="450.0">
+              <children>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_3_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_4_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_5_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_3_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_5" prefWidth="200.0" wrapText="true" HBox.margin="$x1" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_4_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_5_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_3_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_3_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_4_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_4_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_5_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_5_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <HBox prefHeight="150.0" prefWidth="450.0">
+              <children>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_6_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_7_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_8_0" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_1" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_2" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_6_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_7_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_8_3" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_4" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_5" prefWidth="200.0" wrapText="true" />
+                        <Separator blendMode="DIFFERENCE" orientation="VERTICAL" prefHeight="200.0" HBox.margin="$x1" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+                <VBox prefHeight="150.0" prefWidth="150.0">
+                  <children>
+                    <HBox prefHeight="100.0" prefWidth="100.0">
+                      <children>
+                        <TextArea fx:id="cell_6_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_6_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_7_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_7_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                      <children>
+                        <TextArea fx:id="cell_8_6" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_7" prefWidth="200.0" wrapText="true" />
+                        <TextArea fx:id="cell_8_8" prefWidth="200.0" wrapText="true" />
+                      </children>
+                    </HBox>
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+        <Separator blendMode="EXCLUSION" layoutX="15.0" layoutY="251.0" prefWidth="450.0" style="" />
+        <Separator blendMode="DIFFERENCE" layoutX="15.0" layoutY="401.0" prefWidth="450.0" style="" />
+        <Button fx:id="vypocitej" layoutX="190.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Vypočítej" />
+        <Button fx:id="vymaz" layoutX="53.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" onAction="#Pokus" text="Vymaž" />
+        <Button fx:id="exit" layoutX="353.0" layoutY="580.0" mnemonicParsing="false" onAction="#ExitAction" prefHeight="40.0" prefWidth="75.0" text="Exit" />
+        <Label layoutX="120.0" layoutY="20.0" prefHeight="50.0" prefWidth="240.00009999999747" text="SUDOKU Resolver" textAlignment="CENTER" textOverrun="ELLIPSIS" underline="true">
+          <font>
+            <Font name="Trebuchet MS" size="30.0" />
+          </font>
+        </Label>
+        <Label layoutX="15.0" layoutY="71.0" text="Zadej čísla:">
+          <font>
+            <Font size="20.0" />
+          </font>
+        </Label>
+        <Label fx:id="warning" layoutX="15.0" layoutY="552.0" prefHeight="28.0" prefWidth="164.0" text="Můžeš zadat jen čísla!" textFill="#ff3d00" visible="false">
+          <font>
+            <Font size="16.0" />
+          </font>
+        </Label>
+      </children>
+    </AnchorPane>
+  </center>
+</BorderPane>
