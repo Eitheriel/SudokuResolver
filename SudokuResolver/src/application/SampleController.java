@@ -502,14 +502,14 @@ public class SampleController {
     	VymazPole();
     }
     
-    public void Vypis(ActionEvent event) throws InterruptedException {
+    public void Vypis(ActionEvent event) {
     	VytvorPole();
     	PredvyplnPole();
     	//System.out.println(OverPritomost("1", 8, 0));
     	//Vymen(0, 3);
     	Vyres();
     	
-    	//VypisPole();
+    	VypisPole();
     }
     
     public void ExitAction(ActionEvent event) {
@@ -548,7 +548,7 @@ public class SampleController {
     	}
     }
     
-    public void Vyres() throws InterruptedException {
+    public void Vyres() {
     	boolean go = true;
     	while(go) {
     		int counter=0;
@@ -561,8 +561,6 @@ public class SampleController {
             		}	
             	}	
             if(counter == 0) go=false;
-            java.util.concurrent.TimeUnit.SECONDS.sleep(2);
-        	VypisPole();
     	}
     }
     
