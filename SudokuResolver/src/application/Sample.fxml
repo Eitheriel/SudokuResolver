@@ -282,8 +282,8 @@
         </VBox>
         <Separator blendMode="EXCLUSION" layoutX="15.0" layoutY="251.0" prefWidth="450.0" style="" />
         <Separator blendMode="DIFFERENCE" layoutX="15.0" layoutY="401.0" prefWidth="450.0" style="" />
-        <Button fx:id="vypocitej" layoutX="190.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Vypočítej" />
-        <Button fx:id="vymaz" layoutX="53.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" onAction="#Pokus" text="Vymaž" />
+        <Button fx:id="vypocitej" layoutX="190.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" onAction="#Vypis" text="Vypočítej" />
+        <Button fx:id="vymaz" layoutX="53.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="75.0" onAction="#Vymaz" text="Vymaž" />
         <Button fx:id="exit" layoutX="353.0" layoutY="580.0" mnemonicParsing="false" onAction="#ExitAction" prefHeight="40.0" prefWidth="75.0" text="Exit" />
         <Label layoutX="120.0" layoutY="20.0" prefHeight="50.0" prefWidth="240.00009999999747" text="SUDOKU Resolver" textAlignment="CENTER" textOverrun="ELLIPSIS" underline="true">
           <font>

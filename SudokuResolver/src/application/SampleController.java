@@ -350,44 +350,7 @@ public class SampleController {
 
      String cell_8_8Conv = cell_8_8.getText();*/
     
-    
-    
-    /*TextArea[][] poleSudoku = {
-    		{cell_0_0,cell_0_1,cell_0_2,cell_0_3,cell_0_4,cell_0_5,cell_0_6,cell_0_7,cell_0_8},
-    		{cell_1_0,cell_1_1,cell_1_2,cell_1_3,cell_1_4,cell_1_5,cell_1_6,cell_1_7,cell_1_8},
-    		{cell_2_0,cell_2_1,cell_2_2,cell_2_3,cell_2_4,cell_2_5,cell_2_6,cell_2_7,cell_2_8},
-    		{cell_3_0,cell_3_1,cell_3_2,cell_3_3,cell_3_4,cell_3_5,cell_3_6,cell_3_7,cell_3_8},
-    		{cell_4_0,cell_4_1,cell_4_2,cell_4_3,cell_4_4,cell_4_5,cell_4_6,cell_4_7,cell_4_8},
-    		{cell_5_0,cell_5_1,cell_5_2,cell_5_3,cell_5_4,cell_5_5,cell_5_6,cell_5_7,cell_5_8},
-    		{cell_6_0,cell_6_1,cell_6_2,cell_6_3,cell_6_4,cell_6_5,cell_6_6,cell_6_7,cell_6_8},
-    		{cell_7_0,cell_7_1,cell_7_2,cell_7_3,cell_7_4,cell_7_5,cell_7_6,cell_7_7,cell_7_8},
-    		{cell_8_0,cell_8_1,cell_8_2,cell_8_3,cell_8_4,cell_8_5,cell_8_6,cell_8_7,cell_8_8}
-    };*/
 
-    SquarePiece[][] square = new SquarePiece[9][9]; 
-    
-    
-    public void Pokus(ActionEvent event) {
-    	VytvorPole();
-        /*for(int i=0;i<9;i++)
-         	for(int j=0;j<9;j++) {
-    			System.out.println(square[i][j].getValue());
-    		}*/
-    	PredvyplnPole();
-    	for (int m=0;m<9;m++) {
-    		for(int n=0;n<9;n++) {
-    			System.out.println(square[m][n].getValue());
-    		}
-		}
-    }
-    
-    public void ExitAction(ActionEvent event) {
-    	Platform.exit();
-    }
-    	
-    public void initialize(URL url, ResourceBundle rb) {
-    }
-    
     public void VytvorPole() {
     	String cell_0_0Conv = cell_0_0.getText();
         String cell_0_1Conv = cell_0_1.getText();
@@ -486,69 +449,160 @@ public class SampleController {
          	for(int j=0;j<9;j++) {
          		SquarePiece sp = new SquarePiece();
          		sp.setValue(poleSudoku[i][j]);
-         		if(poleSudoku[i][j] != "") {
+         		if(!poleSudoku[i][j].isEmpty()) {
          			sp.Immobilize();
          		}
          		square[i][j]=sp;
          	}
     }
     
+    public void VypisPole() {
+        TextArea[][] poleVypisSudoku = {
+		{cell_0_0,cell_0_1,cell_0_2,cell_0_3,cell_0_4,cell_0_5,cell_0_6,cell_0_7,cell_0_8},
+		{cell_1_0,cell_1_1,cell_1_2,cell_1_3,cell_1_4,cell_1_5,cell_1_6,cell_1_7,cell_1_8},
+		{cell_2_0,cell_2_1,cell_2_2,cell_2_3,cell_2_4,cell_2_5,cell_2_6,cell_2_7,cell_2_8},
+		{cell_3_0,cell_3_1,cell_3_2,cell_3_3,cell_3_4,cell_3_5,cell_3_6,cell_3_7,cell_3_8},
+		{cell_4_0,cell_4_1,cell_4_2,cell_4_3,cell_4_4,cell_4_5,cell_4_6,cell_4_7,cell_4_8},
+		{cell_5_0,cell_5_1,cell_5_2,cell_5_3,cell_5_4,cell_5_5,cell_5_6,cell_5_7,cell_5_8},
+		{cell_6_0,cell_6_1,cell_6_2,cell_6_3,cell_6_4,cell_6_5,cell_6_6,cell_6_7,cell_6_8},
+		{cell_7_0,cell_7_1,cell_7_2,cell_7_3,cell_7_4,cell_7_5,cell_7_6,cell_7_7,cell_7_8},
+		{cell_8_0,cell_8_1,cell_8_2,cell_8_3,cell_8_4,cell_8_5,cell_8_6,cell_8_7,cell_8_8}
+        };
+        
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        		poleVypisSudoku[i][j].setText(square[i][j].getValue());
+        	}
+    }
+    
+    public void VymazPole() {
+        TextArea[][] poleVypisSudoku = {
+		{cell_0_0,cell_0_1,cell_0_2,cell_0_3,cell_0_4,cell_0_5,cell_0_6,cell_0_7,cell_0_8},
+		{cell_1_0,cell_1_1,cell_1_2,cell_1_3,cell_1_4,cell_1_5,cell_1_6,cell_1_7,cell_1_8},
+		{cell_2_0,cell_2_1,cell_2_2,cell_2_3,cell_2_4,cell_2_5,cell_2_6,cell_2_7,cell_2_8},
+		{cell_3_0,cell_3_1,cell_3_2,cell_3_3,cell_3_4,cell_3_5,cell_3_6,cell_3_7,cell_3_8},
+		{cell_4_0,cell_4_1,cell_4_2,cell_4_3,cell_4_4,cell_4_5,cell_4_6,cell_4_7,cell_4_8},
+		{cell_5_0,cell_5_1,cell_5_2,cell_5_3,cell_5_4,cell_5_5,cell_5_6,cell_5_7,cell_5_8},
+		{cell_6_0,cell_6_1,cell_6_2,cell_6_3,cell_6_4,cell_6_5,cell_6_6,cell_6_7,cell_6_8},
+		{cell_7_0,cell_7_1,cell_7_2,cell_7_3,cell_7_4,cell_7_5,cell_7_6,cell_7_7,cell_7_8},
+		{cell_8_0,cell_8_1,cell_8_2,cell_8_3,cell_8_4,cell_8_5,cell_8_6,cell_8_7,cell_8_8}
+        };
+        
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        			poleVypisSudoku[i][j].setText("");
+        	}
+    }
+    
+    //=============================================================
+    
+    SquarePiece[][] square = new SquarePiece[9][9]; 
+    
+    public void Vymaz(ActionEvent event) {
+    	VymazPole();
+    }
+    
+    public void Vypis(ActionEvent event) {
+    	VytvorPole();
+    	PredvyplnPole();
+    	//System.out.println(OverPritomost("1", 8, 0));
+    	Vymen(0, 3);
+    	
+    	VypisPole();
+    }
+    
+    public void ExitAction(ActionEvent event) {
+    	Platform.exit();
+    }
+    	
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+   
+    
     public void PredvyplnPole() {
     	for(int i=0;i<9;i++) {
-			ArrayList<String> neco = new ArrayList<String>();
-			for (int k=0;k<9;k++) {
-				neco.add(square[i][k].getValue());
+			ArrayList<String> zadaneHodnoty = new ArrayList<String>();
+			ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
+			
+			//tady se vytvoøí pole zadaných hodnot uživatelem
+			for (int k=0; k<9; k++) {
+				if(!square[i][k].getValue().isEmpty())
+					zadaneHodnoty.add(square[i][k].getValue());
 			}
-			//tady by moh být while nebo foreach
-			int counter1=0;
-    		for (int j=0;j<9;j++) {
 
-    			if (neco.contains(Integer.toString(counter1+1))) {
-    				continue;
-    			}
-    			else {
-    				if(square[i][counter1].getValue() != "") {
-    					square[i][counter1].setValue(Integer.toString(counter1+1));
-    					counter1++;
-    				}
-    				else continue;
-    			}
+			//tady se vytvoøí pole hodnot, které budou dosazovány do tabulky
+    		for (int j=0; j<9; j++) {
+    			if (!zadaneHodnoty.contains(Integer.toString(j+1)))
+    				doplnovaneHodnoty.add(Integer.toString(j+1));
     		}
     		
-    	}   	
-    }    			
-    		
-    		//List<String> ciselnyMustr = Arrays.asList("1","2","3","4","5","6","7","8","9");
-    		
-    		
-    		/*List<String> ciselnyMustr2 = Arrays.asList("0","1","2","3","4","5","6","7","8");
-    		Iterator<String> x=ciselnyMustr2.iterator();
-    		System.out.println("Kontrola jedna");
-    		while(x.hasNext()) {
-    			System.out.println("kontrola dvì");
-    			String s= x.next();
-    			if(ciselnyMustr.contains(square[i][Integer.parseInt(x.toString())].getValue())){
-    				System.out.println("kontrola tøi");
-    				String cokoliv= square[i][Integer.parseInt(x.toString())].getValue();
-    				System.out.println(cokoliv);
-    				System.out.println(ciselnyMustr.indexOf(cokoliv));
-    				System.out.println("obsahuje mustr nìco ze zadaných hodnot?");
-    				System.out.println("kontrola ètyøi");
-    				x.remove();
+    		//tady se dosadí doplnovane hodnoty do square
+    		int counter1=0;
+    		for (int m=0; m<9; m++) {
+    			if(square[i][m].getValue().isEmpty()) {
+    				square[i][m].setValue(doplnovaneHodnoty.get(counter1));
+    				counter1++;
     			}
+    		}
+    	}
+    }
+    
+    /*public void Vyres() {
+    	while(true) {
+            for (int i=0; i<9; i++)
+            	for (int j=0; j<9; j++) {
+            		//SquarePiece ctverecek = square[i][j];
+            		if (OverPritomost(i,j)) {
+            			//zkusím pøesunout do dalšího sloupce... a zopakuju podmínku
+            			Vymen(i,j);
+            		}
+            		
+            		
+            		
+            }
+    	}
+    }*/
+    
+    public void Vymen(int sloupec, int rada) {
+    	//pokud pole má ve sloupeèku stejné èíslo, tak ho pøehodím na další pole, pokud i to nemá stejné èíslo. 
+    	//Pokud nenajdu žádné další pole, nechám to být
+    	
+    	for (int i=0; i<9;i++) {
+    		if(rada+i>8) {
+        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i-9)) {
+        			continue;
+        		}
+        		else {
+            		String predavanaHodnota = square[sloupec][rada].getValue();
+            		square[sloupec][rada].setValue(square[sloupec][rada+i-9].getValue());
+            		square[sloupec][rada+i-9].setValue(predavanaHodnota);
+            		break;
+        		}
+    		}
+    		else {
+        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i)) {
+        			continue;
+        		}
+        		else {
+            		String predavanaHodnota = square[sloupec][rada].getValue();
+            		square[sloupec][rada].setValue(square[sloupec][rada+i].getValue());
+            		square[sloupec][rada+i].setValue(predavanaHodnota);
+            		break;
+        		}
+    		}
+    	}    	
+    }
 
-    		}*/
-
-    		/*for(int j=0;j<9;j++) {
-    			
-    			if(ciselnyMustr.contains(square[i][j].getValue())){
-    				String cokoliv= square[i][j].getValue();
-    				System.out.println(cokoliv);
-    				System.out.println(ciselnyMustr.indexOf(cokoliv));
-    				System.out.println("obsahuje mustr nìco ze zadaných hodnot?");
-    				ciselnyMustr.remove("1");
-    			}
-    		}*/
-    		
-
+    public boolean OverPritomost(String hodnota, int sloupec, int rada) {
+        		for (int i=0; i<9;i++) {
+        			if (i != sloupec) {
+        				if(square[i][rada].getValue().equals(hodnota)) {
+        					return true;
+        				}
+        			}
+        		}
+        		return false;
+        	}
+    
+    
 }
