@@ -5,11 +5,12 @@ public class SquarePiece {
 	private String Value;
 	
 	public SquarePiece() {
+		this.IsMovable=true;
 		this.Value="";
 	}
 	
 	public void Immobilize() {
-		this.IsMovable=true;
+		this.IsMovable=false;
 	}
 	
 	public void setValue(String val) {

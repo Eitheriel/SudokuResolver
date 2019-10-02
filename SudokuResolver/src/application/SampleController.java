@@ -502,13 +502,14 @@ public class SampleController {
     	VymazPole();
     }
     
-    public void Vypis(ActionEvent event) {
+    public void Vypis(ActionEvent event) throws InterruptedException {
     	VytvorPole();
     	PredvyplnPole();
     	//System.out.println(OverPritomost("1", 8, 0));
-    	Vymen(0, 3);
+    	//Vymen(0, 3);
+    	Vyres();
     	
-    	VypisPole();
+    	//VypisPole();
     }
     
     public void ExitAction(ActionEvent event) {
@@ -547,49 +548,56 @@ public class SampleController {
     	}
     }
     
-    /*public void Vyres() {
-    	while(true) {
+    public void Vyres() throws InterruptedException {
+    	boolean go = true;
+    	while(go) {
+    		int counter=0;
             for (int i=0; i<9; i++)
             	for (int j=0; j<9; j++) {
             		//SquarePiece ctverecek = square[i][j];
-            		if (OverPritomost(i,j)) {
-            			//zkusím pøesunout do dalšího sloupce... a zopakuju podmínku
+            		if (OverPritomost(square[i][j].getValue(),i,j)) {
             			Vymen(i,j);
-            		}
-            		
-            		
-            		
-            }
+            			counter++;
+            		}	
+            	}	
+            if(counter == 0) go=false;
+            java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+        	VypisPole();
     	}
-    }*/
+    }
     
     public void Vymen(int sloupec, int rada) {
-    	//pokud pole má ve sloupeèku stejné èíslo, tak ho pøehodím na další pole, pokud i to nemá stejné èíslo. 
-    	//Pokud nenajdu žádné další pole, nechám to být
-    	
-    	for (int i=0; i<9;i++) {
-    		if(rada+i>8) {
-        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i-9)) {
-        			continue;
-        		}
-        		else {
-            		String predavanaHodnota = square[sloupec][rada].getValue();
-            		square[sloupec][rada].setValue(square[sloupec][rada+i-9].getValue());
-            		square[sloupec][rada+i-9].setValue(predavanaHodnota);
-            		break;
-        		}
-    		}
-    		else {
-        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i)) {
-        			continue;
-        		}
-        		else {
-            		String predavanaHodnota = square[sloupec][rada].getValue();
-            		square[sloupec][rada].setValue(square[sloupec][rada+i].getValue());
-            		square[sloupec][rada+i].setValue(predavanaHodnota);
-            		break;
-        		}
-    		}
+    	if(square[sloupec][rada].IsMovable) {
+    	//pokud hledá sloupeèek vìtší než 8
+	    	for (int i=0; i<9;i++) {
+	    		if(rada+i>8) {
+	        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i-9)) {
+	        			continue;
+	        		}
+	        		else {
+	        			if(square[sloupec][rada+i-9].IsMovable) {
+	            		String predavanaHodnota = square[sloupec][rada].getValue();
+	            		square[sloupec][rada].setValue(square[sloupec][rada+i-9].getValue());
+	            		square[sloupec][rada+i-9].setValue(predavanaHodnota);
+	            		break;
+	        			}
+	        		}
+	    		}
+	    		//pokud nehledá sloupeèek vìtší než 8
+	    		else {
+	        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i)) {
+	        			continue;
+	        		}
+	        		else {
+	        	    	if(square[sloupec][rada+i].IsMovable) {
+	            		String predavanaHodnota = square[sloupec][rada].getValue();
+	            		square[sloupec][rada].setValue(square[sloupec][rada+i].getValue());
+	            		square[sloupec][rada+i].setValue(predavanaHodnota);
+	            		break;
+	        	    	}
+	        		}
+	    		}
+	    	}
     	}    	
     }
 
