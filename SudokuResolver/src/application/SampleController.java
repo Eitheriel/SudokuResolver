@@ -550,17 +550,26 @@ public class SampleController {
     
     public void Vyres() {
     	boolean go = true;
+		int counterPocetCyklu=0;
     	while(go) {
-    		int counter=0;
+    		counterPocetCyklu++;
+    		int counterZmeny=0;
             for (int i=0; i<9; i++)
             	for (int j=0; j<9; j++) {
             		//SquarePiece ctverecek = square[i][j];
             		if (OverPritomost(square[i][j].getValue(),i,j)) {
             			Vymen(i,j);
-            			counter++;
+            			counterZmeny++;
             		}	
             	}	
-            if(counter == 0) go=false;
+            if(counterZmeny == 0) {
+            	go=false;
+            	System.out.println("Všechno dopadlo v poøádku. Pocet cyklù: "+counterPocetCyklu);
+            }
+            if(counterPocetCyklu>500) {
+            	go=false;
+            	System.out.println("Nedopadlo to!");
+            }
     	}
     }
     
