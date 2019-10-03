@@ -507,7 +507,7 @@ public class SampleController {
     	PredvyplnPole();
     	//System.out.println(OverPritomost("1", 8, 0));
     	//Vymen(0, 3);
-    	Vyres();
+    	//Vyres();
     	
     	VypisPole();
     }
@@ -521,30 +521,38 @@ public class SampleController {
    
     
     public void PredvyplnPole() {
-    	for(int i=0;i<9;i++) {
-			ArrayList<String> zadaneHodnoty = new ArrayList<String>();
-			ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
-			
+    	for(int i=0;i<9;i+=3) 
+    		for(int j=0;j<9;j+=3) {
+    			PredvyplnKostku(i,j);
+    	}
+    }
+    
+    //pøedvyplnìní kostky hodnotami 1-9 do kostky 3x3 pole
+    public void PredvyplnKostku(int konstSloupec, int konstRada) {
+		ArrayList<String> zadaneHodnoty = new ArrayList<String>();
+		ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
+    	for(int i=0;i<3;i++) {
 			//tady se vytvoøí pole zadaných hodnot uživatelem
-			for (int k=0; k<9; k++) {
-				if(!square[i][k].getValue().isEmpty())
-					zadaneHodnoty.add(square[i][k].getValue());
+			for (int k=0; k<3; k++) {
+				if(!square[i+konstSloupec][k+konstRada].getValue().isEmpty())
+					zadaneHodnoty.add(square[i+konstSloupec][k+konstRada].getValue());
 			}
-
-			//tady se vytvoøí pole hodnot, které budou dosazovány do tabulky
-    		for (int j=0; j<9; j++) {
-    			if (!zadaneHodnoty.contains(Integer.toString(j+1)))
-    				doplnovaneHodnoty.add(Integer.toString(j+1));
-    		}
+    	}
+		//tady se vytvoøí pole hodnot, které budou dosazovány do tabulky
+    	for (int j=0; j<9; j++) {
+    		if (!zadaneHodnoty.contains(Integer.toString(j+1)))
+    			doplnovaneHodnoty.add(Integer.toString(j+1));
+    	}
     		
-    		//tady se dosadí doplnovane hodnoty do square
-    		int counter1=0;
-    		for (int m=0; m<9; m++) {
-    			if(square[i][m].getValue().isEmpty()) {
-    				square[i][m].setValue(doplnovaneHodnoty.get(counter1));
-    				counter1++;
-    			}
-    		}
+    	//tady se dosadí doplnovane hodnoty do jedné kostky
+    	int counter1=0;
+    	for (int i=0;i<3;i++) {
+	    	for (int j=0; j<3; j++) {
+	    		if(square[i+konstSloupec][j+konstRada].getValue().isEmpty()) {
+	    			square[i+konstSloupec][j+konstRada].setValue(doplnovaneHodnoty.get(counter1));
+	    			counter1++;
+	    		}
+	    	}
     	}
     }
     
@@ -557,7 +565,7 @@ public class SampleController {
             for (int i=0; i<9; i++)
             	for (int j=0; j<9; j++) {
             		//SquarePiece ctverecek = square[i][j];
-            		if (OverPritomost(square[i][j].getValue(),i,j)) {
+            		if (OverPritomostVertikalne(square[i][j].getValue(),i,j)) {
             			Vymen(i,j);
             			counterZmeny++;
             		}	
@@ -578,7 +586,7 @@ public class SampleController {
     	//pokud hledá sloupeèek vìtší než 8
 	    	for (int i=0; i<9;i++) {
 	    		if(rada+i>8) {
-	        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i-9)) {
+	        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+i-9)) {
 	        			continue;
 	        		}
 	        		else {
@@ -592,7 +600,7 @@ public class SampleController {
 	    		}
 	    		//pokud nehledá sloupeèek vìtší než 8
 	    		else {
-	        		if(OverPritomost(square[sloupec][rada].getValue(), sloupec, rada+i)) {
+	        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+i)) {
 	        			continue;
 	        		}
 	        		else {
@@ -608,7 +616,8 @@ public class SampleController {
     	}    	
     }
 
-    public boolean OverPritomost(String hodnota, int sloupec, int rada) {
+    //Ovìøí, že v daném sloupci není stejná hodnota, jako je ta zadaná
+    public boolean OverPritomostVertikalne(String hodnota, int sloupec, int rada) {
         		for (int i=0; i<9;i++) {
         			if (i != sloupec) {
         				if(square[i][rada].getValue().equals(hodnota)) {
@@ -619,5 +628,15 @@ public class SampleController {
         		return false;
         	}
     
+    public boolean OverPritomostHorizontalne(String hodnota, int sloupec, int rada) {
+		for (int i=0; i<9;i++) {
+			if (i != rada) {
+				if(square[sloupec][i].getValue().equals(hodnota)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
     
 }
