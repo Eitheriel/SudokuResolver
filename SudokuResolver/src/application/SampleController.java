@@ -417,7 +417,7 @@ public class SampleController {
             }
             if(counterPocetCyklu>100) {
             	go=false;
-            	System.out.println(counterPocetCyklu);
+            	System.out.println("Poèet cyklù v poslední iteraci: "+counterPocetCyklu);
             	System.out.println("Nedopadlo to!");
             }
     	}
