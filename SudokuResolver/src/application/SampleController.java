@@ -186,170 +186,6 @@ public class SampleController {
     
     @FXML
     public Label warning;
-    
-
-     /*String cell_0_0Conv = cell_0_0.getText();
-
-     String cell_0_1Conv = cell_0_1.getText();
-
-     String cell_0_2Conv = cell_0_2.getText();
-
-     String cell_0_3Conv = cell_0_3.getText();
-
-     String cell_0_4Conv = cell_0_4.getText();
-
-     String cell_0_5Conv = cell_0_5.getText();
-
-     String cell_0_6Conv = cell_0_6.getText();
-
-     String cell_0_7Conv = cell_0_7.getText();
-
-     String cell_0_8Conv = cell_0_8.getText();
-
-     String cell_1_0Conv = cell_1_0.getText();
-
-     String cell_1_1Conv = cell_1_1.getText();
-
-     String cell_1_2Conv = cell_1_2.getText();
-
-     String cell_1_3Conv = cell_1_3.getText();
-
-     String cell_1_4Conv = cell_1_4.getText();
-
-     String cell_1_5Conv = cell_1_5.getText();
-
-     String cell_1_6Conv = cell_1_6.getText();   
-
-     String cell_1_7Conv = cell_1_7.getText();
-
-     String cell_1_8Conv = cell_1_8.getText();
-
-     String cell_2_0Conv = cell_2_0.getText();
-
-     String cell_2_1Conv = cell_2_1.getText();
-
-     String cell_2_2Conv = cell_2_2.getText();    
-
-     String cell_2_3Conv = cell_2_3.getText();
-
-     String cell_2_4Conv = cell_2_4.getText();
-
-     String cell_2_5Conv = cell_2_5.getText();
-
-     String cell_2_6Conv = cell_2_6.getText();   
-
-     String cell_2_7Conv = cell_2_7.getText();
-
-     String cell_2_8Conv = cell_2_8.getText();
-
-     String cell_3_0Conv = cell_3_0.getText();
-
-     String cell_3_1Conv = cell_3_1.getText();
-
-     String cell_3_2Conv = cell_3_2.getText();    
-
-     String cell_3_3Conv = cell_3_3.getText();
-
-     String cell_3_4Conv = cell_3_4.getText();
-
-     String cell_3_5Conv = cell_3_5.getText();
-
-     String cell_3_6Conv = cell_3_6.getText();   
-
-     String cell_3_7Conv = cell_3_7.getText();
-
-     String cell_3_8Conv = cell_3_8.getText();
-
-     String cell_4_0Conv = cell_4_0.getText();
-
-     String cell_4_1Conv = cell_4_1.getText();
-
-     String cell_4_2Conv = cell_4_2.getText();    
-
-     String cell_4_3Conv = cell_4_3.getText();
-
-     String cell_4_4Conv = cell_4_4.getText();
-
-     String cell_4_5Conv = cell_4_5.getText();
-
-     String cell_4_6Conv = cell_4_6.getText();   
-
-     String cell_4_7Conv = cell_4_7.getText();
-
-     String cell_4_8Conv = cell_4_8.getText();
-
-     String cell_5_0Conv = cell_5_0.getText();
-
-     String cell_5_1Conv = cell_5_1.getText();
-
-     String cell_5_2Conv = cell_5_2.getText();    
-
-     String cell_5_3Conv = cell_5_3.getText();
-
-     String cell_5_4Conv = cell_5_4.getText();
-
-     String cell_5_5Conv = cell_5_5.getText();
-
-     String cell_5_6Conv = cell_5_6.getText();   
-
-     String cell_5_7Conv = cell_5_7.getText();
-
-     String cell_5_8Conv = cell_5_8.getText();
-
-     String cell_6_0Conv = cell_6_0.getText();
-
-     String cell_6_1Conv = cell_6_1.getText();
-
-     String cell_6_2Conv = cell_6_2.getText();    
-
-     String cell_6_3Conv = cell_6_3.getText();
-
-     String cell_6_4Conv = cell_6_4.getText();
-
-     String cell_6_5Conv = cell_6_5.getText();
-
-     String cell_6_6Conv = cell_6_6.getText();   
-
-     String cell_6_7Conv = cell_6_7.getText();
-
-     String cell_6_8Conv = cell_6_8.getText();
-
-     String cell_7_0Conv = cell_7_0.getText();
-
-     String cell_7_1Conv = cell_7_1.getText();
-
-     String cell_7_2Conv = cell_7_2.getText();    
-
-     String cell_7_3Conv = cell_7_3.getText();
-
-     String cell_7_4Conv = cell_7_4.getText();
-
-     String cell_7_5Conv = cell_7_5.getText();
-
-     String cell_7_6Conv = cell_7_6.getText();   
-
-     String cell_7_7Conv = cell_7_7.getText();
-
-     String cell_7_8Conv = cell_7_8.getText();
-
-     String cell_8_0Conv = cell_8_0.getText();
-
-     String cell_8_1Conv = cell_8_1.getText();
-
-     String cell_8_2Conv = cell_8_2.getText();    
-
-     String cell_8_3Conv = cell_8_3.getText();
-
-     String cell_8_4Conv = cell_8_4.getText();
-
-     String cell_8_5Conv = cell_8_5.getText();
-
-     String cell_8_6Conv = cell_8_6.getText();   
-
-     String cell_8_7Conv = cell_8_7.getText();
-
-     String cell_8_8Conv = cell_8_8.getText();*/
-    
 
     public void VytvorPole() {
     	String cell_0_0Conv = cell_0_0.getText();
@@ -566,15 +402,22 @@ public class SampleController {
     			for(int m=0;m<9;m+=3) {
 		            for (int i=0; i<3; i++) {
 		            	for (int j=0; j<3; j++) {
-		            		PresunPole(i, j, k, m);
-		            		counterZmeny++;
-            
+			        		if(OverPritomostVertikalne(square[i+k][j+m].getValue(), i+k, j+m) ||
+			        				OverPritomostHorizontalne(square[i+k][j+m].getValue(), i+k, j+m)) {
+			            		PresunPole(i+k, j+m, k, m);
+			            		counterZmeny++;
+			        		}
+		            	}
+		            }
+    			}
+
             if(counterZmeny == 0) {
             	go=false;
             	System.out.println("Všechno dopadlo v poøádku. Pocet cyklù: "+counterPocetCyklu);
             }
-            if(counterPocetCyklu>50) {
+            if(counterPocetCyklu>100) {
             	go=false;
+            	System.out.println(counterPocetCyklu);
             	System.out.println("Nedopadlo to!");
             }
     	}
@@ -588,9 +431,10 @@ public class SampleController {
 	    	for(int i=0;i<3;i++)
 	    		for(int j=0;j<3;j++) {
 	    			if (sloupec+i>2+sektorSloupec && rada+j>2+sektorRada) {
-		    			if (OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec+i-3, rada+j-3)) {
-		    				continue;
-		    			}
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3) ||
+		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
+		        			continue;
+		        		}
 		        		else {
 		        			if(square[sloupec+i-3][rada+j-3].IsMovable) {
 		        				posunSloupec=i-3;
@@ -600,23 +444,25 @@ public class SampleController {
 		        		}
 	    			}
 	    			else if(rada+j>2+sektorRada) {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3)) {
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3) ||
+		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
 		        			continue;
 		        		}
 		        		else {
-		        			if(square[sloupec][rada+j-3].IsMovable) {
+		        			if(square[sloupec+i][rada+j-3].IsMovable) {
 		        				posunSloupec=i;
 			        			posunRadu=j-3;
-		            		break;
+			        			break;
 		        			}
 		        		}
 	    			}
 	    			else if(sloupec+i>2+sektorSloupec) {
-	            		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j) ||
+		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
 		        			continue;
 		        		}
 		        		else {
-		        			if(square[sloupec+i-3][rada].IsMovable) {
+		        			if(square[sloupec+i-3][rada+j].IsMovable) {
 			        			posunSloupec=i-3;
 			        			posunRadu=j;
 			        			break;
@@ -624,24 +470,22 @@ public class SampleController {
 		        		}
 	    			}
 	    			else {
-		    			if (OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec+i, rada+j)){
-		    				continue;
-		    			}
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j) ||
+		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
+		        			continue;
+		        		}
 		    			else {
-		        			if(square[sloupec+i][rada].IsMovable) {
+		        			if(square[sloupec+i][rada+j].IsMovable) {
 			        			posunSloupec=i;
 			        			posunRadu=j;
 			        			break;
 		        			}
-	    			}	
-	    		}
-	    		}
-		       	String predavanaHodnota = square[sloupec][rada].getValue();
-		  		System.out.println("Bod s hodnotou "+predavanaHodnota+" na souøadnicích "+sloupec+" "+rada+" bude presunut na souradnice "+(sloupec+posunSloupec)+" "+(rada+posunRadu));
-		   		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
-		   		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
-
-	    	
+		    			}	
+		    		}
+		    	}
+		String predavanaHodnota = square[sloupec][rada].getValue();
+		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
+		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
     	}
     }
     
@@ -667,140 +511,4 @@ public class SampleController {
 		}
 		return false;
 	}
-    
-    /*public void VymenHorizontalne(int sloupec, int rada, int sektorRada) {
-    	if(square[sloupec][rada].IsMovable) {
-    	//pokud hledá sloupeèek vìtší než 2
-	    	for (int i=0; i<3;i++) {
-	    		if(rada+i>2+sektorRada) {
-	        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+i-3)) {
-	        			continue;
-	        		}
-	        		else {
-	        			if(square[sloupec][rada+i-3].IsMovable) {
-	            		String predavanaHodnota = square[sloupec][rada].getValue();
-	            		square[sloupec][rada].setValue(square[sloupec][rada+i-3].getValue());
-	            		square[sloupec][rada+i-3].setValue(predavanaHodnota);
-	            		break;
-	        			}
-	        		}
-	    		}
-	    		//pokud nehledá sloupeèek vìtší než 2
-	    		else {
-	        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+i)) {
-	        			continue;
-	        		}
-	        		else {
-	        	    	if(square[sloupec][rada+i].IsMovable) {
-	            		String predavanaHodnota = square[sloupec][rada].getValue();
-	            		square[sloupec][rada].setValue(square[sloupec][rada+i].getValue());
-	            		square[sloupec][rada+i].setValue(predavanaHodnota);
-	            		break;
-	        	    	}
-	        		}
-	    		}
-	    	}
-    	}    	
-    }*/
-    
-    /*public void VymenVertikalne(int sloupec, int rada, int sektorSloupec) {
-    	if(square[sloupec][rada].IsMovable) {
-    	//pokud hledá sloupeèek vìtší než 2
-	    	for (int i=0; i<3;i++) {
-	    		if(sloupec+i>2+sektorSloupec) {
-	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
-	        			continue;
-	        		}
-	        		else {
-	        			if(square[sloupec+i-3][rada].IsMovable) {
-	            		String predavanaHodnota = square[sloupec][rada].getValue();
-	            		square[sloupec][rada].setValue(square[sloupec+i-3][rada].getValue());
-	            		square[sloupec+i-3][rada].setValue(predavanaHodnota);
-	            		break;
-	        			}
-	        		}
-	    		}
-	    		//pokud nehledá sloupeèek vìtší než 2
-	    		else {
-	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
-	        			continue;
-	        		}
-	        		else {
-	        	    	if(square[sloupec+i][rada].IsMovable) {
-	            		String predavanaHodnota = square[sloupec][rada].getValue();
-	            		square[sloupec][rada].setValue(square[sloupec+i][rada].getValue());
-	            		square[sloupec+i][rada].setValue(predavanaHodnota);
-	            		break;
-	        	    	}
-	        		}
-	    		}
-	    	}
-    	}    	
-    }*/
-    
-    /*public void VymenHorizontalneIVertikalne(int sloupec, int rada, int sektorSloupec, int sektorRada) {
-    	int posunSloupec=0;
-    	int posunRadu=0;
-    	if(square[sloupec][rada].IsMovable) {
-    	//pokud hledá sloupeèek vìtší než 2
-	    	for (int i=0; i<3;i++) {
-	    		if(sloupec+i>2+sektorSloupec) {
-	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
-	        			continue;
-	        		}
-	        		else {
-	        			if(square[sloupec+i-3][rada].IsMovable) {
-		        			posunSloupec=i-3;
-	        			}
-	        		}
-	    		}
-	    		//pokud nehledá sloupeèek vìtší než 2
-	    		else {
-	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
-	        			continue;
-	        		}
-	        		else {
-	        	    	if(square[sloupec+i][rada].IsMovable) {
-		        			posunSloupec=i;
-		        			System.out.println("vertival "+posunSloupec);
-	        	    	}
-	        		}
-	    		}
-	    		//druhý vnoøený cyklus pro hledání v øádku.
-		    	for (int j=0; j<3;j++) {
-		    		if(rada+j>2+sektorRada) {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3)) {
-		        			continue;
-		        		}
-		        		else {
-		        			if(square[sloupec][rada+j-3].IsMovable) {
-			        			posunRadu=j-3;
-		            		break;
-		        			}
-		        		}
-		    		}
-		    		//pokud nehledá sloupeèek vìtší než 2
-		    		else {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j)) {
-		        			continue;
-		        		}
-		        		else {
-		        	    	if(square[sloupec][rada+j].IsMovable) {
-			        			posunRadu=j;
-		            		break;
-		        	    	}
-		        		}
-		    		}
-		    	}
-	    	}
-	    	
-    		String predavanaHodnota = square[sloupec][rada].getValue();
-    		
-    		System.out.println("Bod s hodnotou "+predavanaHodnota+" na souøadnicích "+sloupec+" "+rada+" bude presunut na souradnice "+(sloupec+posunSloupec)+" "+(rada+posunRadu));
-    		
-    		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
-    		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
-    	}    	
-    }    */
-    
 }
