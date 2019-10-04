@@ -548,7 +548,7 @@ public class SampleController {
     public void Vypis(ActionEvent event) {
     	VytvorPole();
     	PredvyplnPole();
-    	//System.out.println(OverPritomostHorizontalne("1", 0, 0));
+    	//System.out.println(OverPritomostVertikalne("1", 0, 0));
     	//VymenVertikalne(0,0,0);
     	Vyres();
     	
@@ -561,43 +561,114 @@ public class SampleController {
     	while(go) {
     		counterPocetCyklu++;
     		int counterZmeny=0;
+
     		for (int k=0;k<9;k+=3)
     			for(int m=0;m<9;m+=3) {
 		            for (int i=0; i<3; i++) {
 		            	for (int j=0; j<3; j++) {
-		            		//SquarePiece ctverecek = square[i][j];
-		            		if (OverPritomostHorizontalne(square[i+k][j+m].getValue(),i+k,j+m)) {
-		            			VymenHorizontalne(i+k,j+m,m);
-		            			counterZmeny++;
-		            		}	
-		            	}	
-		            }
-    			}
-    		for (int k=0;k<9;k+=3)
-    			for(int m=0;m<9;m+=3) {
-		            for (int i=0; i<3; i++) {
-		            	for (int j=0; j<3; j++) {
-		            		//SquarePiece ctverecek = square[i][j];
-		            		if (OverPritomostVertikalne(square[i+k][j+m].getValue(),i+k,j+m)) {
-		            			VymenVertikalne(i+k,j+m,k);
-		            			counterZmeny++;  
-		            		}
-		            	}
-		            }
-    			}            
+		            		PresunPole(i, j, k, m);
+		            		counterZmeny++;
             
             if(counterZmeny == 0) {
             	go=false;
             	System.out.println("Všechno dopadlo v poøádku. Pocet cyklù: "+counterPocetCyklu);
             }
-            if(counterPocetCyklu>500) {
+            if(counterPocetCyklu>50) {
             	go=false;
             	System.out.println("Nedopadlo to!");
             }
     	}
     }
     
-    public void VymenHorizontalne(int sloupec, int rada, int sektorRada) {
+    public void PresunPole(int sloupec, int rada, int sektorSloupec, int sektorRada) {
+    	int posunSloupec=0;
+    	int posunRadu=0;
+    
+    	if(square[sloupec][rada].IsMovable) {
+	    	for(int i=0;i<3;i++)
+	    		for(int j=0;j<3;j++) {
+	    			if (sloupec+i>2+sektorSloupec && rada+j>2+sektorRada) {
+		    			if (OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec+i-3, rada+j-3)) {
+		    				continue;
+		    			}
+		        		else {
+		        			if(square[sloupec+i-3][rada+j-3].IsMovable) {
+		        				posunSloupec=i-3;
+			        			posunRadu=j-3;
+		            		break;
+		        			}
+		        		}
+	    			}
+	    			else if(rada+j>2+sektorRada) {
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3)) {
+		        			continue;
+		        		}
+		        		else {
+		        			if(square[sloupec][rada+j-3].IsMovable) {
+		        				posunSloupec=i;
+			        			posunRadu=j-3;
+		            		break;
+		        			}
+		        		}
+	    			}
+	    			else if(sloupec+i>2+sektorSloupec) {
+	            		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
+		        			continue;
+		        		}
+		        		else {
+		        			if(square[sloupec+i-3][rada].IsMovable) {
+			        			posunSloupec=i-3;
+			        			posunRadu=j;
+			        			break;
+		        			}
+		        		}
+	    			}
+	    			else {
+		    			if (OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec+i, rada+j)){
+		    				continue;
+		    			}
+		    			else {
+		        			if(square[sloupec+i][rada].IsMovable) {
+			        			posunSloupec=i;
+			        			posunRadu=j;
+			        			break;
+		        			}
+	    			}	
+	    		}
+	    		}
+		       	String predavanaHodnota = square[sloupec][rada].getValue();
+		  		System.out.println("Bod s hodnotou "+predavanaHodnota+" na souøadnicích "+sloupec+" "+rada+" bude presunut na souradnice "+(sloupec+posunSloupec)+" "+(rada+posunRadu));
+		   		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
+		   		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
+
+	    	
+    	}
+    }
+    
+    //Ovìøí, že v daném sloupci není stejná hodnota, jako je ta zadaná
+    public boolean OverPritomostVertikalne(String hodnota, int sloupec, int rada) {
+        for (int i=0; i<9;i++) {
+        	if (i != sloupec) {
+        		if(square[i][rada].getValue().equals(hodnota)) {
+        			return true;
+        		}
+        	}
+        }
+        return false;
+    }
+    
+    public boolean OverPritomostHorizontalne(String hodnota, int sloupec, int rada) {
+		for (int i=0; i<9;i++) {
+			if (i != rada) {
+				if(square[sloupec][i].getValue().equals(hodnota)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+    
+    /*public void VymenHorizontalne(int sloupec, int rada, int sektorRada) {
     	if(square[sloupec][rada].IsMovable) {
     	//pokud hledá sloupeèek vìtší než 2
 	    	for (int i=0; i<3;i++) {
@@ -630,9 +701,9 @@ public class SampleController {
 	    		}
 	    	}
     	}    	
-    }
+    }*/
     
-    public void VymenVertikalne(int sloupec, int rada, int sektorSloupec) {
+    /*public void VymenVertikalne(int sloupec, int rada, int sektorSloupec) {
     	if(square[sloupec][rada].IsMovable) {
     	//pokud hledá sloupeèek vìtší než 2
 	    	for (int i=0; i<3;i++) {
@@ -665,29 +736,71 @@ public class SampleController {
 	    		}
 	    	}
     	}    	
-    }
-
-    //Ovìøí, že v daném sloupci není stejná hodnota, jako je ta zadaná
-    public boolean OverPritomostVertikalne(String hodnota, int sloupec, int rada) {
-        for (int i=0; i<9;i++) {
-        	if (i != sloupec) {
-        		if(square[i][rada].getValue().equals(hodnota)) {
-        			return true;
-        		}
-        	}
-        }
-        return false;
-    }
+    }*/
     
-    public boolean OverPritomostHorizontalne(String hodnota, int sloupec, int rada) {
-		for (int i=0; i<9;i++) {
-			if (i != rada) {
-				if(square[sloupec][i].getValue().equals(hodnota)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    /*public void VymenHorizontalneIVertikalne(int sloupec, int rada, int sektorSloupec, int sektorRada) {
+    	int posunSloupec=0;
+    	int posunRadu=0;
+    	if(square[sloupec][rada].IsMovable) {
+    	//pokud hledá sloupeèek vìtší než 2
+	    	for (int i=0; i<3;i++) {
+	    		if(sloupec+i>2+sektorSloupec) {
+	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
+	        			continue;
+	        		}
+	        		else {
+	        			if(square[sloupec+i-3][rada].IsMovable) {
+		        			posunSloupec=i-3;
+	        			}
+	        		}
+	    		}
+	    		//pokud nehledá sloupeèek vìtší než 2
+	    		else {
+	        		if(OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
+	        			continue;
+	        		}
+	        		else {
+	        	    	if(square[sloupec+i][rada].IsMovable) {
+		        			posunSloupec=i;
+		        			System.out.println("vertival "+posunSloupec);
+	        	    	}
+	        		}
+	    		}
+	    		//druhý vnoøený cyklus pro hledání v øádku.
+		    	for (int j=0; j<3;j++) {
+		    		if(rada+j>2+sektorRada) {
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3)) {
+		        			continue;
+		        		}
+		        		else {
+		        			if(square[sloupec][rada+j-3].IsMovable) {
+			        			posunRadu=j-3;
+		            		break;
+		        			}
+		        		}
+		    		}
+		    		//pokud nehledá sloupeèek vìtší než 2
+		    		else {
+		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j)) {
+		        			continue;
+		        		}
+		        		else {
+		        	    	if(square[sloupec][rada+j].IsMovable) {
+			        			posunRadu=j;
+		            		break;
+		        	    	}
+		        		}
+		    		}
+		    	}
+	    	}
+	    	
+    		String predavanaHodnota = square[sloupec][rada].getValue();
+    		
+    		System.out.println("Bod s hodnotou "+predavanaHodnota+" na souøadnicích "+sloupec+" "+rada+" bude presunut na souradnice "+(sloupec+posunSloupec)+" "+(rada+posunRadu));
+    		
+    		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
+    		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
+    	}    	
+    }    */
     
 }
