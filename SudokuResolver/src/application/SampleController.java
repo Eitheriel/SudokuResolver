@@ -393,8 +393,6 @@ public class SampleController {
     public void Vypis(ActionEvent event) {
     	VytvorPole();
     	Vyres();
-		//VytvorvsechnyKostkyDoKterychSeDosazovalo();
-    	//DosadDlePozice();
     	VypisPole();
     }
     
@@ -404,8 +402,7 @@ public class SampleController {
     	while(counterPocetCyklu<10) {
     		VytvorvsechnyKostkyDoKterychSeDosazovalo();
         	DosadDlePozice();
-        	System.out.println(square[2][0].getDosazovana());
-
+        	CleanPositions();
     		counterPocetCyklu++;
     	}
     }
@@ -434,6 +431,8 @@ public class SampleController {
     		if (!zadaneHodnoty.contains(Integer.toString(j+1)))
     			doplnovaneHodnoty.add(Integer.toString(j+1));
     	}
+    	
+    	//doplnování možných hodnot do seznamu každého políèka
         for (int i=0; i<3; i++)
         	for (int j=0; j<3; j++) {
         		if(square[i+konstSloupec][j+konstRada].getValue().isEmpty()) {
@@ -449,6 +448,7 @@ public class SampleController {
         		}
         	}
         
+        //Mechanismus tøídìní.. pokud v kostce je nìjaká hodnota v poli dosaditelná jen na jednom místì, tak se tam dosadí
         for (int k=0;k<doplnovaneHodnoty.size();k++) {
         	int counter=0;
         	int adresaSloupec=0;
@@ -462,6 +462,7 @@ public class SampleController {
 	        			adresaRadek=j;
 	        		}
 	        	}
+	        
 	        if(counter==1) {
 	        	square[adresaSloupec+konstSloupec][adresaRadek+konstRada].setValue(doplnovaneHodnoty.get(k));
 	        	square[adresaSloupec+konstSloupec][adresaRadek+konstRada].Immobilize();
@@ -472,6 +473,7 @@ public class SampleController {
     }
     
     public void DosadDlePozice() {
+    	//mechanismus tøídìní... pokud na nìjakém poli je možno dosadit jen jednu hodnotu, tak se tam dosadí.
         for (int i=0; i<9; i++)
         	for (int j=0; j<9; j++) {
         		if(square[i][j].getDosazovana().size()==1) {
@@ -482,105 +484,12 @@ public class SampleController {
         	}
     }
     
-    /*public void PredvyplnPole() {
-    	for(int i=0;i<9;i+=3) 
-    		for(int j=0;j<9;j+=3) {
-    			PredvyplnKostku(i,j);
-    	}
-    }*/
-    
-    //pøedvyplnìní kostky hodnotami 1-9 do kostky 3x3 pole
-    /*public void PredvyplnKostku(int konstSloupec, int konstRada) {
-		ArrayList<String> zadaneHodnoty = new ArrayList<String>();
-		ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
-    	for(int i=0;i<3;i++) {
-			//tady se vytvoøí pole zadaných hodnot uživatelem
-			for (int k=0; k<3; k++) {
-				if(!square[i+konstSloupec][k+konstRada].getValue().isEmpty())
-					zadaneHodnoty.add(square[i+konstSloupec][k+konstRada].getValue());
-			}
-    	}
-		//tady se vytvoøí pole hodnot, které budou dosazovány do tabulky
-    	for (int j=0; j<9; j++) {
-    		if (!zadaneHodnoty.contains(Integer.toString(j+1)))
-    			doplnovaneHodnoty.add(Integer.toString(j+1));
-    	}
-    		
-    	//tady se dosadí doplnovane hodnoty do jedné kostky
-    	int counter1=0;
-    	for (int i=0;i<3;i++) {
-	    	for (int j=0; j<3; j++) {
-	    		if(square[i+konstSloupec][j+konstRada].getValue().isEmpty()) {
-	    			square[i+konstSloupec][j+konstRada].setValue(doplnovaneHodnoty.get(counter1));
-	    			counter1++;
-	    		}
-	    	}
-    	}
-    }*/
-    
-    /*public void PresunPole(int sloupec, int rada, int sektorSloupec, int sektorRada) {
-    	int posunSloupec=0;
-    	int posunRadu=0;
-    
-    	if(square[sloupec][rada].IsMovable) {
-	    	for(int i=0;i<3;i++)
-	    		for(int j=0;j<3;j++) {
-	    			if (sloupec+i>2+sektorSloupec && rada+j>2+sektorRada) {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3) ||
-		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
-		        			continue;
-		        		}
-		        		else {
-		        			if(square[sloupec+i-3][rada+j-3].IsMovable) {
-		        				posunSloupec=i-3;
-			        			posunRadu=j-3;
-		            		break;
-		        			}
-		        		}
-	    			}
-	    			else if(rada+j>2+sektorRada) {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j-3) ||
-		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
-		        			continue;
-		        		}
-		        		else {
-		        			if(square[sloupec+i][rada+j-3].IsMovable) {
-		        				posunSloupec=i;
-			        			posunRadu=j-3;
-			        			break;
-		        			}
-		        		}
-	    			}
-	    			else if(sloupec+i>2+sektorSloupec) {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j) ||
-		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i-3, rada)) {
-		        			continue;
-		        		}
-		        		else {
-		        			if(square[sloupec+i-3][rada+j].IsMovable) {
-			        			posunSloupec=i-3;
-			        			posunRadu=j;
-			        			break;
-		        			}
-		        		}
-	    			}
-	    			else {
-		        		if(OverPritomostVertikalne(square[sloupec][rada].getValue(), sloupec, rada+j) ||
-		        				OverPritomostHorizontalne(square[sloupec][rada].getValue(), sloupec+i, rada)) {
-		        			continue;
-		        		}
-		    			else {
-		        			if(square[sloupec+i][rada+j].IsMovable) {
-			        			posunSloupec=i;
-			        			posunRadu=j;
-			        			break;
-		        			}
-		    			}	
-		    		}
-		    	}
-		String predavanaHodnota = square[sloupec][rada].getValue();
-		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
-		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
-    	}
-    }*/
+    public void CleanPositions() {
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        		if(!square[i][j].getDosazovana().isEmpty()) {
+        			square[i][j].getDosazovana().clear();
+        		}
+        	}
+    }
 }
