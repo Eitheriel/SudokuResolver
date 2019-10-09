@@ -393,27 +393,19 @@ public class SampleController {
     public void Vypis(ActionEvent event) {
     	VytvorPole();
     	Vyres();
+		//VytvorvsechnyKostkyDoKterychSeDosazovalo();
+    	//DosadDlePozice();
     	VypisPole();
     }
-    
-    public boolean Kontrola() {
-        for (int i=0; i<9; i++)
-        	for (int j=0; j<9; j++) {
-        		if(OverPritomostHorizontalne(square[i][j].getValue(), i, j) || OverPritomostVertikalne(square[i][j].getValue(), i, j)) {
-        			return true;
-        		}
-        	}
-        return false;
-    }
-    
     
     public void Vyres() {
     	//boolean go = true;
 		int counterPocetCyklu=0;
-    	while(counterPocetCyklu>100) {
+    	while(counterPocetCyklu<10) {
     		VytvorvsechnyKostkyDoKterychSeDosazovalo();
         	DosadDlePozice();
-        	VypisPole();
+        	System.out.println(square[2][0].getDosazovana());
+
     		counterPocetCyklu++;
     	}
     }
@@ -448,7 +440,9 @@ public class SampleController {
         			for (int k=0;k<doplnovaneHodnoty.size();k++) {
         				if(!OverPritomostHorizontalne(doplnovaneHodnoty.get(k), i+konstSloupec, j+konstRada) && 
         						!OverPritomostVertikalne(doplnovaneHodnoty.get(k), i+konstSloupec, j+konstRada)) {
-        					square[i+konstSloupec][j+konstRada].setDosazovana(doplnovaneHodnoty.get(k));
+        					if(!square[i+konstSloupec][j+konstRada].getDosazovana().contains(doplnovaneHodnoty.get(k))) {
+        						square[i+konstSloupec][j+konstRada].setDosazovana(doplnovaneHodnoty.get(k));
+        					}
         				}
         			}
         			
@@ -487,19 +481,6 @@ public class SampleController {
         		}
         	}
     }
-    
-    public void DosadDleCisla() {
-		for (int k=0;k<9;k+=3)
-			for(int m=0;m<9;m+=3) {
-	            for (int i=0; i<3; i++) {
-	            	for (int j=0; j<3; j++) {
-	            		
-	            	}
-	            }
-			}
-    	
-    }
-    
     
     /*public void PredvyplnPole() {
     	for(int i=0;i<9;i+=3) 
