@@ -330,15 +330,186 @@ public class SampleController {
         	}
     }
     
-    public void PredvyplnPole() {
+    public void VymazDosazovane() {
+        TextArea[][] poleVypisSudoku = {
+		{cell_0_0,cell_0_1,cell_0_2,cell_0_3,cell_0_4,cell_0_5,cell_0_6,cell_0_7,cell_0_8},
+		{cell_1_0,cell_1_1,cell_1_2,cell_1_3,cell_1_4,cell_1_5,cell_1_6,cell_1_7,cell_1_8},
+		{cell_2_0,cell_2_1,cell_2_2,cell_2_3,cell_2_4,cell_2_5,cell_2_6,cell_2_7,cell_2_8},
+		{cell_3_0,cell_3_1,cell_3_2,cell_3_3,cell_3_4,cell_3_5,cell_3_6,cell_3_7,cell_3_8},
+		{cell_4_0,cell_4_1,cell_4_2,cell_4_3,cell_4_4,cell_4_5,cell_4_6,cell_4_7,cell_4_8},
+		{cell_5_0,cell_5_1,cell_5_2,cell_5_3,cell_5_4,cell_5_5,cell_5_6,cell_5_7,cell_5_8},
+		{cell_6_0,cell_6_1,cell_6_2,cell_6_3,cell_6_4,cell_6_5,cell_6_6,cell_6_7,cell_6_8},
+		{cell_7_0,cell_7_1,cell_7_2,cell_7_3,cell_7_4,cell_7_5,cell_7_6,cell_7_7,cell_7_8},
+		{cell_8_0,cell_8_1,cell_8_2,cell_8_3,cell_8_4,cell_8_5,cell_8_6,cell_8_7,cell_8_8}
+        };
+        
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        		if(square[i][j].IsMovable) {
+        			poleVypisSudoku[i][j].setText("");
+        		}
+        	}
+    }
+    
+    //Ovìøí, že v daném sloupci není stejná hodnota, jako je ta zadaná
+    public boolean OverPritomostVertikalne(String hodnota, int sloupec, int rada) {
+        for (int i=0; i<9;i++) {
+        	if (i != sloupec) {
+        		if(square[i][rada].getValue().equals(hodnota)) {
+        			return true;
+        		}
+        	}
+        }
+        return false;
+    }
+    
+    public boolean OverPritomostHorizontalne(String hodnota, int sloupec, int rada) {
+		for (int i=0; i<9;i++) {
+			if (i != rada) {
+				if(square[sloupec][i].getValue().equals(hodnota)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+    
+    //=============================================================
+    
+    SquarePiece[][] square = new SquarePiece[9][9]; 
+    
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+    
+    public void ExitAction(ActionEvent event) {
+    	Platform.exit();
+    }
+    
+    public void Vymaz(ActionEvent event) {
+    	VymazPole();
+    	//VymazDosazovane();
+    }
+    
+    public void Vypis(ActionEvent event) {
+    	VytvorPole();
+    	Vyres();
+    	VypisPole();
+    }
+    
+    public boolean Kontrola() {
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        		if(OverPritomostHorizontalne(square[i][j].getValue(), i, j) || OverPritomostVertikalne(square[i][j].getValue(), i, j)) {
+        			return true;
+        		}
+        	}
+        return false;
+    }
+    
+    
+    public void Vyres() {
+    	//boolean go = true;
+		int counterPocetCyklu=0;
+    	while(counterPocetCyklu>100) {
+    		VytvorvsechnyKostkyDoKterychSeDosazovalo();
+        	DosadDlePozice();
+        	VypisPole();
+    		counterPocetCyklu++;
+    	}
+    }
+    
+    public void VytvorvsechnyKostkyDoKterychSeDosazovalo() {
+    	for(int i=0;i<9;i+=3) 
+    		for(int j=0;j<9;j+=3) {
+    			VytvorSeznamyDosazovanychKostka(i,j);
+    	}
+    }
+    
+    
+    public void VytvorSeznamyDosazovanychKostka (int konstSloupec, int konstRada) {
+    	
+		ArrayList<String> zadaneHodnoty = new ArrayList<String>();
+		ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
+    	for(int i=0;i<3;i++) {
+			//tady se vytvoøí pole zadaných hodnot uživatelem
+			for (int k=0; k<3; k++) {
+				if(!square[i+konstSloupec][k+konstRada].getValue().isEmpty())
+					zadaneHodnoty.add(square[i+konstSloupec][k+konstRada].getValue());
+			}
+    	}
+		//tady se vytvoøí pole hodnot, které budou dosazovány do tabulky
+    	for (int j=0; j<9; j++) {
+    		if (!zadaneHodnoty.contains(Integer.toString(j+1)))
+    			doplnovaneHodnoty.add(Integer.toString(j+1));
+    	}
+        for (int i=0; i<3; i++)
+        	for (int j=0; j<3; j++) {
+        		if(square[i+konstSloupec][j+konstRada].getValue().isEmpty()) {
+        			for (int k=0;k<doplnovaneHodnoty.size();k++) {
+        				if(!OverPritomostHorizontalne(doplnovaneHodnoty.get(k), i+konstSloupec, j+konstRada) && 
+        						!OverPritomostVertikalne(doplnovaneHodnoty.get(k), i+konstSloupec, j+konstRada)) {
+        					square[i+konstSloupec][j+konstRada].setDosazovana(doplnovaneHodnoty.get(k));
+        				}
+        			}
+        			
+        		}
+        	}
+        
+        for (int k=0;k<doplnovaneHodnoty.size();k++) {
+        	int counter=0;
+        	int adresaSloupec=0;
+        	int adresaRadek=0;
+        	
+	        for (int i=0; i<3; i++)
+	        	for (int j=0; j<3; j++) {
+	        		if(square[i+konstSloupec][j+konstRada].getDosazovana().contains(doplnovaneHodnoty.get(k))){
+	        			counter+=1;
+	        			adresaSloupec=i;
+	        			adresaRadek=j;
+	        		}
+	        	}
+	        if(counter==1) {
+	        	square[adresaSloupec+konstSloupec][adresaRadek+konstRada].setValue(doplnovaneHodnoty.get(k));
+	        	square[adresaSloupec+konstSloupec][adresaRadek+konstRada].Immobilize();
+	        	square[adresaSloupec+konstSloupec][adresaRadek+konstRada].clearDosazovana();
+	        }
+        }
+        
+    }
+    
+    public void DosadDlePozice() {
+        for (int i=0; i<9; i++)
+        	for (int j=0; j<9; j++) {
+        		if(square[i][j].getDosazovana().size()==1) {
+        			square[i][j].setValue(square[i][j].getDosazovana().get(0));
+        			square[i][j].Immobilize();
+        			square[i][j].clearDosazovana();
+        		}
+        	}
+    }
+    
+    public void DosadDleCisla() {
+		for (int k=0;k<9;k+=3)
+			for(int m=0;m<9;m+=3) {
+	            for (int i=0; i<3; i++) {
+	            	for (int j=0; j<3; j++) {
+	            		
+	            	}
+	            }
+			}
+    	
+    }
+    
+    
+    /*public void PredvyplnPole() {
     	for(int i=0;i<9;i+=3) 
     		for(int j=0;j<9;j+=3) {
     			PredvyplnKostku(i,j);
     	}
-    }
+    }*/
     
     //pøedvyplnìní kostky hodnotami 1-9 do kostky 3x3 pole
-    public void PredvyplnKostku(int konstSloupec, int konstRada) {
+    /*public void PredvyplnKostku(int konstSloupec, int konstRada) {
 		ArrayList<String> zadaneHodnoty = new ArrayList<String>();
 		ArrayList<String> doplnovaneHodnoty = new ArrayList<String>();
     	for(int i=0;i<3;i++) {
@@ -364,66 +535,9 @@ public class SampleController {
 	    		}
 	    	}
     	}
-    }
+    }*/
     
-    //=============================================================
-    
-    SquarePiece[][] square = new SquarePiece[9][9]; 
-    
-    public void initialize(URL url, ResourceBundle rb) {
-    }
-    
-    public void ExitAction(ActionEvent event) {
-    	Platform.exit();
-    }
-    
-    public void Vymaz(ActionEvent event) {
-    	VymazPole();
-    }
-    
-    public void Vypis(ActionEvent event) {
-    	VytvorPole();
-    	PredvyplnPole();
-    	//System.out.println(OverPritomostVertikalne("1", 0, 0));
-    	//VymenVertikalne(0,0,0);
-    	Vyres();
-    	
-    	VypisPole();
-    }
-    
-    public void Vyres() {
-    	boolean go = true;
-		int counterPocetCyklu=0;
-    	while(go) {
-    		counterPocetCyklu++;
-    		int counterZmeny=0;
-
-    		for (int k=0;k<9;k+=3)
-    			for(int m=0;m<9;m+=3) {
-		            for (int i=0; i<3; i++) {
-		            	for (int j=0; j<3; j++) {
-			        		if(OverPritomostVertikalne(square[i+k][j+m].getValue(), i+k, j+m) ||
-			        				OverPritomostHorizontalne(square[i+k][j+m].getValue(), i+k, j+m)) {
-			            		PresunPole(i+k, j+m, k, m);
-			            		counterZmeny++;
-			        		}
-		            	}
-		            }
-    			}
-
-            if(counterZmeny == 0) {
-            	go=false;
-            	System.out.println("Všechno dopadlo v poøádku. Pocet cyklù: "+counterPocetCyklu);
-            }
-            if(counterPocetCyklu>100) {
-            	go=false;
-            	System.out.println("Poèet cyklù v poslední iteraci: "+counterPocetCyklu);
-            	System.out.println("Nedopadlo to!");
-            }
-    	}
-    }
-    
-    public void PresunPole(int sloupec, int rada, int sektorSloupec, int sektorRada) {
+    /*public void PresunPole(int sloupec, int rada, int sektorSloupec, int sektorRada) {
     	int posunSloupec=0;
     	int posunRadu=0;
     
@@ -487,28 +601,5 @@ public class SampleController {
 		square[sloupec][rada].setValue(square[sloupec+posunSloupec][rada+posunRadu].getValue());
 		square[sloupec+posunSloupec][rada+posunRadu].setValue(predavanaHodnota);
     	}
-    }
-    
-    //Ovìøí, že v daném sloupci není stejná hodnota, jako je ta zadaná
-    public boolean OverPritomostVertikalne(String hodnota, int sloupec, int rada) {
-        for (int i=0; i<9;i++) {
-        	if (i != sloupec) {
-        		if(square[i][rada].getValue().equals(hodnota)) {
-        			return true;
-        		}
-        	}
-        }
-        return false;
-    }
-    
-    public boolean OverPritomostHorizontalne(String hodnota, int sloupec, int rada) {
-		for (int i=0; i<9;i++) {
-			if (i != rada) {
-				if(square[sloupec][i].getValue().equals(hodnota)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    }*/
 }
