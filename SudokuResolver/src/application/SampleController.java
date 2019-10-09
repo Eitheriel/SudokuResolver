@@ -2,9 +2,6 @@ package application;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -444,7 +441,6 @@ public class SampleController {
         					}
         				}
         			}
-        			
         		}
         	}
         
